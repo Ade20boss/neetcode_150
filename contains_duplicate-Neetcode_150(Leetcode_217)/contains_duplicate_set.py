@@ -11,4 +11,9 @@ def contains_duplicate(array):
     return False
 
 
-print(contains_duplicate(nums))
+# one liner cousin
+def contains_duplicate_set_one_liner(array):
+    return len(array) != len(set(nums))
+
+
+print(contains_duplicate_set_one_liner(nums))

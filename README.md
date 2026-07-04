@@ -36,9 +36,12 @@ Each problem is its own folder at the repo root:
 ```
 neetcode-150/
 ├── README.md
-├── 0217-contains-duplicate/
+├── 0001-two-sum/
 │   ├── solution.py        # all approaches
 │   └── notes.md           # my breakdown, in my own words
+├── 0217-contains-duplicate/
+│   ├── solution.py
+│   └── notes.md
 ├── 0242-valid-anagram/
 │   ├── solution.py
 │   └── notes.md
@@ -52,7 +55,7 @@ what tripped me up, the optimal choice, and the "say it out loud" interview summ
 
 ## Progress
 
-**Solved:** 2 / 150
+**Solved:** 3 / 150
 
 **Cold re-solve legend:** ✅ can reproduce from scratch · 🔁 needs another cold pass · ⬜ not yet re-solved
 
@@ -62,6 +65,7 @@ root-level folder.)_
 ### Arrays & Hashing
 | # | Problem | Approaches | Optimal | Cold re-solve |
 |---|---------|------------|---------|---------------|
+| 1 | [Two Sum](./0001-two-sum/) | brute · one-pass hashmap | O(n) time / O(n) space (hashmap) | ⬜ |
 | 217 | [Contains Duplicate](./0217-contains-duplicate/) | brute · sort · dict · set | O(n) time / O(n) space (set) | ⬜ |
 | 242 | [Valid Anagram](./0242-valid-anagram/) | sort · Counter · 1-liner · build-dict · one-dict ±→0 | O(n) time / O(1) space (one-dict) | ⬜ |
 

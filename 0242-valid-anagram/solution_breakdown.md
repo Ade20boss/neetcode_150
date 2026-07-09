@@ -9,17 +9,21 @@ The realization that framed everything: this whole problem is really just **"how
 
 ## My scoreboard
 
-|#|My approach|Time|Space|My note|
-|---|---|---|---|---|
-|1|Sort + compare (naive)|O(n log n)|O(n)*|order-erasing by reordering|
-|2|Counter + manual loop|O(n)|O(n)|works, but "correct-by-interaction"|
-|3|Counter == Counter (1-liner)|O(n)|O(n)|the idiomatic one|
-|4|Build two dicts, compare|O(n)|O(n)|my first from-scratch version|
-|5|One dict, +/- to zero|O(n)|O(k)→O(1)|the tightest one — I'm proud of this|
+| #   | Approach           | Time       | Space | Note                                 |
+| --- | ------------------ | ---------- | ----- | ------------------------------------ |
+| 1   | Sort both, compare | O(n log n) | O(n)  | reorder to canonical form            |
+| 2   | Counter + loop     | O(n)       | O(1)* | build two Counters, compare per char |
+| 3   | Counter == Counter | O(n)       | O(1)* | let == do the comparison             |
+| 4   | Build 2 dicts      | O(n)       | O(1)* | manual version of Counter            |
+| 5   | One dict, +/- to 0 | O(n)       | O(1)* | one pass, cancel out                 |
+| 6   | 26-slot char list  | O(n)       | O(1)  | fastest — direct index, no hashing   |
+
+*O(1) space because the alphabet is bounded (at most 26 distinct lowercase letters), so the
+count structures never grow with input length.
 
 * I used `sorted()`, which builds new lists → O(n) space.
 
-**My takeaway:** all five are correct. Sorting is simplest but slowest. Everything in the counting family is O(n). #5 is the one I'd bring to an interview; #4 is the clean from-scratch version; #3 is what I'd actually type in real code.
+**My takeaway:** all six are correct. Sorting is simplest but slowest. Everything in the counting family is O(n). #5 is the one I'd bring to an interview; #4 is the clean from-scratch version; #3 is what I'd actually type in real code, #6 is the fastest.
 
 ---
 
@@ -141,6 +145,26 @@ So mismatches get caught two ways: a **positive** leftover means `s` had a char 
 **What I'm most proud of:** I merged the two count loops into ONE. Since my length check guarantees `len(s) == len(t)`, I could increment `s[i]` and decrement `t[i]` in the same loop by indexing both strings at position `i`. Still O(n), just tighter — and I got there on my own, it wasn't in the version I was shown.
 
 Space is O(k) where k = distinct characters (≤ 26 for lowercase) → effectively O(1).
+
+---
+### 6. Fixed 26-slot char list — O(n), FASTEST
+```python
+def is_anagram_char_list(s, t):
+    if len(s) != len(t): return False
+    s_list = [0] * 26
+    t_list = [0] * 26
+    for i in range(len(s)):
+        s_list[ord(s[i]) - ord("a")] += 1
+        t_list[ord(t[i]) - ord("a")] += 1
+    return s_list == t_list
+```
+Instead of a hash map, use a fixed 26-element list indexed by `ord(char) - ord('a')`
+(so 'a'→0, 'b'→1, ... 'z'→25). **Why it's the fastest:** no hashing, no dynamic resizing —
+just direct integer indexing into a fixed array, then a 26-element list comparison.
+- Time O(n), Space O(1) (26 slots, constant regardless of input).
+- **Tradeoff / assumption:** only works for lowercase a–z. Uppercase or unicode would break
+  `ord(c) - ord('a')` (wrong index or out of range). It trades generality for raw speed —
+  a deliberate choice, valid when the input is constrained to lowercase.
 
 ---
 

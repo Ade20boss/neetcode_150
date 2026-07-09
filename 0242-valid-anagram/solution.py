@@ -49,3 +49,17 @@ def is_anagram_one_dict(s: str, t: str):
         if s_freq[j] != 0:
             return False
     return True
+
+
+def is_anagram_char_list(s: str, t: str):
+    if len(s) != len(t):
+        return False
+
+    s_list = [0] * 26
+    t_list = [0] * 26
+
+    for i in range(len(s)):
+        s_list[ord(s[i]) - ord("a")] += 1
+        t_list[ord(t[i]) - ord("a")] += 1
+
+    return s_list == t_list

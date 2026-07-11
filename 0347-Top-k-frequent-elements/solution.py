@@ -17,7 +17,7 @@ def k_frequent(array, k):
 def bucket_sort(array, k):
     hash_map = defaultdict(int)
     array_length = len(array)
-    if k > len(array):
+    if k > array_length:
         return None
     bucket = []
     res = []

@@ -11,7 +11,6 @@ def group_anagrams_sort(array):
 
 def group_anagrams_count(array):
     hash_map = dict()
-
     for word in array:
         key = [0] * 26
         for char in word:

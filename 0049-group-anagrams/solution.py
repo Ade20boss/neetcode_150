@@ -2,7 +2,7 @@ def group_anagrams_sort(array):
     hash_map = dict()
     for i in array:
         key = "".join(sorted(i))
-        if hash_map.get(key, 0) == 0:
+        if key not in hash_map:
             hash_map[key] = [i]
         else:
             hash_map[key].append(i)
@@ -16,7 +16,7 @@ def group_anagrams_count(array):
         for char in word:
             key[ord(char) - ord("a")] += 1
         key = tuple(key)
-        if hash_map.get(key, 0) == 0:
+        if key not in hash_map:
             hash_map[key] = [word]
         else:
             hash_map[key].append(word)

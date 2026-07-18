@@ -20,7 +20,7 @@ def p_array_optimal(nums):
 
     product = 1
     for i in range(n):
-        left[i] = product
+        left.append(product)
         product *= nums[i]
 
     product = 1

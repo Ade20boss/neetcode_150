@@ -19,7 +19,7 @@ def valid_sudoku(board):
             else:
                 hash_set.add(array[cols])
 
-    for i in range(0, 9):
+    for i in range(9):
         row = (i // 3) * 3
         column = (i % 3) * 3
         hash_set = set()

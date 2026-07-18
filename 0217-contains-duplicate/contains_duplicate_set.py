@@ -13,7 +13,9 @@ def contains_duplicate(array):
 
 # one liner cousin
 def contains_duplicate_set_one_liner(array):
-    return len(array) != len(set(nums))
+    if len(array) != len(set(nums)):
+        return False
+    return True
 
 
 print(contains_duplicate_set_one_liner(nums))

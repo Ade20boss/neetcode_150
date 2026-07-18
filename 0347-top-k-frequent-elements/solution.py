@@ -6,7 +6,6 @@ def k_frequent(array, k):
     res = []
     for i in array:
         hash_map[i] += 1
-
     for i in range(k):
         key = max(hash_map, key=hash_map.get)
         res.append(key)

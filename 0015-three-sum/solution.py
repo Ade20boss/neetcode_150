@@ -19,31 +19,29 @@ def three_sum(array):
 
 def threeSum(array):
     sum_list = []
-    array = sorted(array)
-    for i in range(len(array)):
-        if array[i] > 0:
+    array.sort()
+
+    for start in range(array):
+        if array[start] > 0:
             break
-        if i > 0 and array[i] == array[i - 1]:
+        if start > 0 and array[start] == array[start - 1]:
             continue
-        left = i + 1
-        right = len(array) - 1
+        left, right = 0, len(array) - 1
         while left < right:
-            triplet = [array[i], array[left], array[right]]
+            triplet = [array[start], array[left], array[right]]
             summed = sum(triplet)
             if summed == 0:
                 sum_list.append(triplet)
-
                 while left < right and array[left] == array[left + 1]:
                     left += 1
                 while left < right and array[right] == array[right - 1]:
                     right -= 1
                 left += 1
-                right += 1
-            elif summed < 0:
-                left += 1
+                right -= 1
             elif summed > 0:
                 right -= 1
-
+            elif summed < 0:
+                left += 1
     return sum_list
 
 
